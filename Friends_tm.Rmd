@@ -67,13 +67,10 @@ friends <- tm_map(friends, PlainTextDocument)
 
 ### 6. Build the Wordcloud
 ```{r}
-#dev.off()
-#tiff("friends_3.tiff", width = 4, height = 4, units = 'in', res = 300)
-jpeg("friends_4.jpg")
-png("friends_5.png", width=1280,height=800)
-#wordcloud(friends, max.words = 300, colors=brewer.pal(8, "Dark2"), min.freq = TRUE)
-wordcloud(friends, max.words = 150, colors=brewer.pal(8, "Dark2"), min.freq = TRUE, scale= c(2.8, 0.5), random.order = TRUE, rot.per = 0.25)
-dev.off()
+jpeg("friends_26.jpg", width=1280,height=800)
 
+wordcloud(friends, max.words = 700, colors=brewer.pal(8, "Dark2"), min.freq = 10, scale= c(5, 1), random.order = TRUE, rot.per = 0, fixed.asp = FALSE)
+
+dev.off()
 ```
 
