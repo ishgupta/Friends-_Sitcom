@@ -5,16 +5,16 @@ output:
   html_notebook: default
 ---
 
-## Using Text Analytics for fun to find out 1000 most used words in all the 10 seasons of a most popular Sitcom TV Series- Friends.
+### Using Text Analytics for fun to find out 1000 most used words in all the 10 seasons of a most popular Sitcom TV Series- Friends.
 
-### 1. Load required Libraries
+#### 1. Load required Libraries
 ```{r, message=FALSE}
 library(tm)
 library(wordcloud)
 library(stringr)
 ```
 
-### 2. Read and clean the subtitles for all Seasons, and transform them into a new clean consolidated file. This includes removing the time lines from subtitles.
+#### 2. Read and clean the subtitles for all Seasons, and transform them into a new clean consolidated file. This includes removing the time lines from subtitles.
 ```{r, warning=FALSE}
 seasons = 1:10
 for(season in seasons){
@@ -43,20 +43,20 @@ for(season in seasons){
 }
 ```
 
-### 3. Fetch the clean subtitles.
+#### 3. Fetch the clean subtitles.
 ```{r, warning=FALSE}
 
 friends <- Corpus(DirSource("data_refined/"))
 
 ```
 
-### 4. FInalize stop words.
+#### 4. FInalize stop words.
 ```{r}
 moreStopWords <- c("good", "yeah", "thats", "one", "say", "youre", "wait", "just", "can", "see", "get", "what", "mean","know","gonna","but","its", "really","this", "got", "look", "sure", "think", "all", "and", "hey", "right", "you", "okay", "what", "how", "this", "that", "and", "but","about","above","across","after","again","against","all","almost","alone","along","already","also","although","always","among","an","and","another","any","anybody","anyone","anything","anywhere","are","area","areas","around","as","ask","asked","asking","asks","at","away","b","back","backed","backing","backs","be","became","because","become","becomes","been","before","began","behind","being","beings","best","better","between","big","both","but","by","c","came","can","cannot","case","cases","certain","certainly","clear","clearly","come","could","d","did","differ","different","differently","do","does","done","down","down","downed","downing","downs","during","e","each","early","either","end","ended","ending","ends","enough","even","evenly","ever","every","everybody","everyone","everything","everywhere","f","face","faces","fact","facts","far","felt","few","find","finds","first","for","four","from","full","fully","further","furthered","furthering","furthers","g","gave","general","generally","get","gets","give","given","gives","go","going","good","goods","got","great","greater","greatest","group","grouped","grouping","groups","h","had","has","have","having","he","her","here","herself","high","high","high","higher","highest","him","himself","his","how","however","i","if","important","in","interest","interested","interesting","interests","into","is","it","its","itself","j","just","k","keep","keeps","kind","knew","know","known","knows","l","large","largely","last","later","latest","least","less","let","lets","like","likely","long","longer","longest","m","made","make","making","man","many","may","me","member","members","men","might","more","most","mostly","mr","mrs","much","must","my","myself","n","necessary","need","needed","needing","needs","never","new","new","newer","newest","next","no","nobody","non","noone","not","nothing","now","nowhere","number","numbers","o","of","off","often","old","older","oldest","on","once","one","only","open","opened","opening","opens","or","order","ordered","ordering","orders","other","others","our","out","over","p","part","parted","parting","parts","per","perhaps","place","places","point","pointed","pointing","points","possible","present","presented","presenting","presents","problem","problems","put","puts","q","quite","r","rather","really","right","right","room","rooms","s","said","same","saw","say","says","second","seconds","see","seem","seemed","seeming","seems","sees","several","shall","she","should","show","showed","showing","shows","side","sides","since","small","smaller","smallest","so","some","somebody","someone","something","somewhere","state","states","still","still","such","sure","t","take","taken","than","that","the","their","them","then","there","therefore","these","they","thing","things","think","thinks","this","those","though","thought","thoughts","three","through","thus","to","today","together","too","took","toward","turn","turned","turning","turns","two","u","under","until","up","upon","us","use","used","uses","v","very","w","want","wanted","wanting","wants","was","way","ways","we","sex","well","wells","went","were","what","when","where","whether","which","while","who","whole","whose","why","will","with","within","without","work","worked","working","works","would","x","y","year","years","yet","you","young","younger","youngest","your","yours")
 
 ```
 
-### 5. Clean text files for stop words, punctuations, whitespaces.
+#### 5. Clean text files for stop words, punctuations, whitespaces.
 
 ```{r}
 friends <- tm_map(friends, PlainTextDocument)
@@ -69,14 +69,14 @@ friends <- tm_map(friends, stemDocument)
 friends <- tm_map(friends, PlainTextDocument)
 ```
 
-### 6. Build the Wordcloud
+#### 6. Build the Wordcloud
 ```{r, warning=FALSE}
-wordcloud(friends, max.words = 700, colors=brewer.pal(8, "Dark2"), min.freq = 10, scale= c(5, 1), random.order = TRUE, rot.per = 0, fixed.asp = FALSE)
-
 jpeg("output/friends.jpg", width=1280,height=800)
 
-wordcloud(friends, max.words = 700, colors=brewer.pal(8, "Dark2"), min.freq = 10, scale= c(5, 1), random.order = TRUE, rot.per = 0, fixed.asp = FALSE)
+wordcloud(friends, max.words = 1000, colors=brewer.pal(8, "Dark2"), min.freq = 10, scale= c(5, 1), random.order = TRUE, rot.per = 0, fixed.asp = FALSE)
 
 dev.off()
+
+wordcloud(friends, max.words = 1000, colors=brewer.pal(8, "Dark2"), min.freq = 10, scale= c(5, 1), random.order = TRUE, rot.per = 0, fixed.asp = FALSE)
 ```
 
