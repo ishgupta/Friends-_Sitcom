@@ -1,8 +1,8 @@
 ---
 title: "Wordcloud for a Sitcom"
 output:
-  html_document: default
-  html_notebook: default
+  md_document: 
+    variant:  markdown_github
 ---
 
 ## Using Text Analytics for fun to find out 1000 most used words in all the 10 seasons of a most popular Sitcom TV Series- Friends.
